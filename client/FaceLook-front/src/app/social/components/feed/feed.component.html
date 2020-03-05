@@ -1,0 +1,80 @@
+<div class="login-form">
+
+  <form  #f="ngForm" (ngSubmit)="(f.form.valid)" autocomplete="on" action="" method="post">
+
+    <h3 class="text-center">Posts filters</h3>
+
+    <div class="form-group">
+      <span>
+        From
+      </span>
+      <span>
+        <input [(ngModel)]="postsFilterService.postsData.fromFilter" #fromFilter="ngModel" name="fromFilter" type="date"
+          class="form-control" placeholder="from where to get posrt" />
+      </span>
+      <span>
+        To
+      </span>
+      <span>
+        <input [(ngModel)]="postsFilterService.postsData.ToFilter" #ToFilter="ngModel" name="ToFilter" type="date"
+          class="form-control" placeholder="to" />
+      </span>
+    </div>
+
+    <hr/>
+
+    <div class="form-group">
+      <span>
+        Publisher:
+      </span>
+      <span>
+        <input [(ngModel)]="postsFilterService.postsData.publisher" #publisherFilter="ngModel" name="publisherFilter" type="text"
+        class="form-control" placeholder="enter publisher name" />
+      </span>
+    </div>
+
+    <hr/>
+
+    <div class="form-group">
+      <span>
+        Radius from current location:
+      </span>
+      <span>
+        <input [(ngModel)]="postsFilterService.postsData.radiusFrom" #radiusFrom="ngModel" name="radiusFrom" type="number"
+        class="form-control" placeholder="enter radius" />
+      </span>
+    </div>
+
+    <hr/>
+
+    <div class="form-group">
+      <span>
+        Image tags
+      </span>
+      <span>
+        <input [(ngModel)]="postsFilterService.postsData.imageTags" #imageTags="ngModel" name="imageTags" type="text"
+        class="form-control" placeholder="enter image Tags"/>
+      </span>
+    </div>
+
+    <hr/>
+
+    <div class="form-group">
+      <span>
+        User tags
+      </span>
+      <span>
+        <input [(ngModel)]="postsFilterService.postsData.userTags" #userTags="ngModel" name="userTags" type="text"
+        class="form-control" placeholder="enter user Tags"/>
+      </span>
+    </div>
+
+    <div class="form-group">
+      <span>
+        <button type="button" class="btn btn-primary btn-lg btn-block" (click)="search()">search</button>
+      </span>
+    </div>
+
+  </form>
+</div>
+

@@ -1,0 +1,19 @@
+#map, #googleMap {
+  height: 50rem;
+  /* min-height: 400px; */
+  width: 100%;
+  margin: 20px auto;
+  overflow: hidden;
+  border: solid 1px grey;
+}
+
+.info_content{
+  max-width: 250px;
+}
+
+/* cannot get this class on the bubble */
+.likes{
+  float: right;
+  color: blue;
+  cursor: pointer;
+}

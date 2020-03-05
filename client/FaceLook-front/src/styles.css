@@ -1,0 +1,56 @@
+BODY{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.fLeft{
+  float: left;
+}
+
+.fRight{
+  float: right;
+}
+
+HR{
+  margin: 0;
+}
+
+.header_nav{
+  /* height: 10px;  */
+  height: 5rem; 
+  overflow: hidden;
+}
+.main_wrap{
+  margin-top: 60px;
+}
+
+.likes_div{
+  float: right; 
+  color: blue; 
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.likes_div:hover{
+  text-decoration: underline;
+}
+
+.like_icon{
+  margin-top: -8px; 
+  width: 25px; 
+  vertical-align: middle;
+}
+
+.nav_social{
+  list-style-type: none !important;
+  margin: 0 !important; 
+  padding: 0 !important;
+  text-align: right !important;
+}
+
+.nav_social li {
+  padding: 30px 20px 7px 20px; 
+  display: inline-block;
+}
+

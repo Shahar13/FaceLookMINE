@@ -1,0 +1,16 @@
+<app-header></app-header>
+
+<div class="main_wrap">
+
+    <div class="gen_wrap">
+    
+        <h2>
+          All Posts
+        </h2>
+        <div *ngFor="let post of posts" class="wrap">
+          <app-post [post]="post" (likesEmitter)="setLikesOfPost($event)"></app-post>
+        </div>
+      
+      </div>
+      
+</div>
