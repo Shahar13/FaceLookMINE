@@ -37,13 +37,12 @@ export class PostsComponent implements OnInit {
     
     if(post){
       // SEND TO DB (client updated on post comp directly)
-      console.log("THIS POST ID: " + post);
+      console.log("THIS POST ID: " + post.post_id);
       this.subscriptionPost = this.postApiService.updateLikes(post)
       .subscribe((res)=>{
         console.log("postApiService.updateLikes.");
         console.log(res);
-        // this.posts = res;
-    })
+      })
     }
   }
 

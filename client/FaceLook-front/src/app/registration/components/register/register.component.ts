@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router , ActivatedRoute} from '@angular/router';
 import { NgForm } from '@angular/forms';
-import {ToastrService} from 'ngx-toastr';
+import { ToastrService } from 'ngx-toastr';
 import { registrationApiService } from "../../service/api-service.service";
 import { UserService } from "../../models/user-service.service";
 

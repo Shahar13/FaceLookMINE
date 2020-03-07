@@ -5,18 +5,15 @@
     <h3 class="text-center">Posts filters</h3>
 
     <div class="form-group">
+      <span>From:</span>
       <span>
-        From
-      </span>
-      <span>
-        <input [(ngModel)]="postsFilterService.postsData.fromFilter" #fromFilter="ngModel" name="fromFilter" type="date"
+        <input [(ngModel)]="postsFilter.fromFilter" #fromFilter="ngModel" name="fromFilter" type="date"
           class="form-control" placeholder="from where to get posrt" />
       </span>
+
+      <span>To:</span>
       <span>
-        To
-      </span>
-      <span>
-        <input [(ngModel)]="postsFilterService.postsData.ToFilter" #ToFilter="ngModel" name="ToFilter" type="date"
+        <input [(ngModel)]="postsFilter.toFilter" #toFilter="ngModel" name="toFilter" type="date"
           class="form-control" placeholder="to" />
       </span>
     </div>
@@ -24,11 +21,9 @@
     <hr/>
 
     <div class="form-group">
+      <span>Publisher:</span>
       <span>
-        Publisher:
-      </span>
-      <span>
-        <input [(ngModel)]="postsFilterService.postsData.publisher" #publisherFilter="ngModel" name="publisherFilter" type="text"
+        <input [(ngModel)]="postsFilter.publisher" #publisherFilter="ngModel" name="publisherFilter" type="text"
         class="form-control" placeholder="enter publisher name" />
       </span>
     </div>
@@ -36,11 +31,9 @@
     <hr/>
 
     <div class="form-group">
+      <span>Radius from current location:</span>
       <span>
-        Radius from current location:
-      </span>
-      <span>
-        <input [(ngModel)]="postsFilterService.postsData.radiusFrom" #radiusFrom="ngModel" name="radiusFrom" type="number"
+        <input [(ngModel)]="postsFilter.radiusFrom" #radiusFrom="ngModel" name="radiusFrom" type="number"
         class="form-control" placeholder="enter radius" />
       </span>
     </div>
@@ -48,11 +41,9 @@
     <hr/>
 
     <div class="form-group">
+      <span>Image tags:</span>
       <span>
-        Image tags
-      </span>
-      <span>
-        <input [(ngModel)]="postsFilterService.postsData.imageTags" #imageTags="ngModel" name="imageTags" type="text"
+        <input [(ngModel)]="postsFilter.imageTags" #imageTags="ngModel" name="imageTags" type="text"
         class="form-control" placeholder="enter image Tags"/>
       </span>
     </div>
@@ -60,11 +51,9 @@
     <hr/>
 
     <div class="form-group">
+      <span>User tags:</span>
       <span>
-        User tags
-      </span>
-      <span>
-        <input [(ngModel)]="postsFilterService.postsData.userTags" #userTags="ngModel" name="userTags" type="text"
+        <input [(ngModel)]="postsFilter.userTags" #userTags="ngModel" name="userTags" type="text"
         class="form-control" placeholder="enter user Tags"/>
       </span>
     </div>

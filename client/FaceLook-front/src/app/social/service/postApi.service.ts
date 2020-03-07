@@ -5,7 +5,10 @@ import { tap } from 'rxjs/operators';
 
 @Injectable()
 export  class postApiService {
+  
   url = "http://localhost:3000/social/";
+  public allPosts: any = {};
+  public publishersIdArr: any = {};
 
   constructor(
     private markersService: markerCollectionsService,
@@ -17,9 +20,16 @@ export  class postApiService {
   }
 
   getAllPosts(){
-    console.log("getAllPost call()");
     return this.httpClient.get(this.url + "getPosts").pipe(
       tap((res) => {
+        console.log("RES all posts");
+        console.log(res);
+        
+        this.publishersIdArr = (<any>res).map(post => ({
+          publisherId: post.publisher_id,
+        }));
+        console.log(this.publishersIdArr);
+
         const markersArr = (<any>res).map(post => ({
           postId: post.post_id,
           title: post.title,
@@ -31,14 +41,16 @@ export  class postApiService {
           likes: post.likes,
           date: post.date,
         }));
-        console.log("res",markersArr);
+        // console.log("res",markersArr);
         this.markersService.markers$.next(markersArr);
       })
     );
   }
 
   getFilterPosts(filters){
-
+    console.log("FILTERS");
+    console.log(filters);
+    
     return this.httpClient.get(this.url + `filterPosts\\${JSON.stringify(filters)}`).pipe(
       tap((res) => {
         const markersArr = (<any>res).map(post => ({
@@ -82,10 +94,6 @@ export  class postApiService {
       })
     );
 
-    // return this.httpClient.get(this.url + "getPosts").toPromise()
-    // .then(collection => {
-    //     this.markersService.markerCollections = collection as any[];
-    // })
   }
 
 }

@@ -12,6 +12,8 @@ BODY{
   float: right;
 }
 
+.bold{font-weight: bold;}
+
 HR{
   margin: 0;
 }

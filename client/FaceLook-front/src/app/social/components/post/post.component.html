@@ -1,20 +1,24 @@
 <div class="fLeft" *ngIf="post">
     <div class="user_name">
-        {{post.title}}
+        {{post.name}}: {{post.title}}
     </div>
     <div class="user_details">
-        Date of post: {{post.date | date}}
-        <br />
+        <span class="bold">Date of post:</span> {{post.date | date}}
+        <hr />
         {{post.text}}
+    </div>
+    <div style="font-weight: bold;margin-top: 33px;">
+        <hr />
+        TAGS: #{{post.text_tag}}
     </div>
 </div>
 
 <div class="fRight">
-    <img src="{{imgPath}}{{post.image}}" class="user_img fRight" title="{{post.Name}}" />
+    <img src="{{imgPath}}{{post.image}}" class="user_img fRight" title="{{post.name}}" />
 
     <div (click)="addLike(post)"
         class="likes_div likes_div_SELECTOR" 
-        id={{post.post_id}}>
+        id="{{post.post_id}}">
         <span>{{post.likes}}</span> Liks <img src="./assets/img/like.png" class="like_icon" title="Like me or die" />
     </div>
 </div>

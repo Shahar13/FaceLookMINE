@@ -118,11 +118,6 @@ export class MapComponent implements AfterViewInit {
             Heritage Site.
           </p>
           <p>${elm.text}</p>
-          <!--
-          <div class="likes_div likes_div_SELECTOR" id=${elm.id}>
-            <span id="like_${elm.id}">${elm.likes}</span> Liks <img src="./assets/img/like.png" class="like_icon" title="Like me or die" />
-          </div>
-          -->
         </div>`;
 
       //add bubbles to the map
