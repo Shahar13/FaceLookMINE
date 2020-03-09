@@ -28,7 +28,6 @@ export  class postApiService {
         this.publishersIdArr = (<any>res).map(post => ({
           publisherId: post.publisher_id,
         }));
-        console.log(this.publishersIdArr);
 
         const markersArr = (<any>res).map(post => ({
           postId: post.post_id,

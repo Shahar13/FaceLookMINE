@@ -179,13 +179,13 @@ function getAllPosts(callback) {
                   INNER JOIN Post_Tag on Posts.post_id = Post_Tag.post_id
                   INNER JOIN Tags on Tags.id_tag = Post_Tag.tag_id
                   INNER JOIN Users on Users._id = Posts.publisher_id
+                  ORDER BY Posts.date DESC
                   `;
 
   sql.query(connectionString, query, (err, rows) => {
     if (err) console.log("from addPost_tag", err);
     else {
       callback(rows);
-      // console.log("rows - ", rows)
     }
   });
 }
@@ -220,6 +220,20 @@ function updateLikes(post, callback) {
   });
 }
 
+function getFriends(callback) {
+  console.log("dbmaneger: getFriends call()");
+  const query = `select _id, name, role, email, active
+                from Users 
+                `;
+
+  sql.query(connectionString, query, (err, rows) => {
+    if (err) console.log("from Users", err);
+    else {
+      callback(rows);
+    }
+  });
+}
+
 module.exports = {
   getFilterPosts,
   find,
@@ -230,5 +244,6 @@ module.exports = {
   addTag,
   addPost_Tag,
   getAllPosts,
-  updateLikes
+  updateLikes,
+  getFriends
 };

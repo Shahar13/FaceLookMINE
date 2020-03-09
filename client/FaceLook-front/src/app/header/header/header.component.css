@@ -44,7 +44,7 @@
 /* END OF */
 
 .btn_search{
-    margin-left: 4px;
+    margin: 0 0 0 4px;
     width: auto;
 }
 .nav_top ul {
@@ -74,19 +74,23 @@
     text-shadow: 1px 2px 3px orange;
 }
 .logout{
-    margin: 6px 0 0 0;
+    margin: 2px 0 0 40px;
     text-decoration: none;
     cursor: pointer;
+    display: inline-block;
 }
 .logout:hover{
-    margin: 6px 0 0 0;
     text-decoration: underline;
 }
 
-@media only screen and (max-width: 768px) {
-    .btn_search{
-        margin-left: 0;
-        width: 100%;
+@media only screen and (max-width: 890px) {
+    /* .btn_search{
+        margin: 10px 0 0 0;
+        width: auto;;
+    } */
+    .logout{
+        margin: 15px 0 0 2px;
+        display: block;
     }
     /* .logo {
         float: none;
@@ -106,3 +110,11 @@
         line-height: 30px;
     } */
 }   
+
+
+@media only screen and (max-width: 400px) {
+    .btn_search{
+        margin: 10px 0 0 0;
+        width: 100%;
+    }
+}

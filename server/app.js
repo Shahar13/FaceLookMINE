@@ -29,12 +29,10 @@ app.use(function(req, res, next) {
 });
 
 // ROUTES
-// const registrationRoutes = require("./routes/registration");
-// const defaultRoutes = require("./routes/default"); 
-// const socialRoutes = require("./routes/social");
 app.use("/", require("./routes/default"));
 app.use("/registration", require("./routes/registration")); 
 app.use("/social", require("./routes/social"));
+app.use("/friends", require("./routes/friends"));
 
 // ERROR HANDLING
 app.use((req, res, next) => {

@@ -19,10 +19,8 @@ export class PostsComponent implements OnInit {
   
   ngOnInit(): void {
     this.subscriptionGet = this.postApiService.getAllPostsAsPosts()
-      .subscribe((res)=>{
-        console.log("returned of result of postApiService.getAllPosts with the given postId, res ==> ");
-        console.log(res);
-        this.posts = res;
+    .subscribe((res)=>{
+      this.posts = res;
     })
   }
 
@@ -32,17 +30,10 @@ export class PostsComponent implements OnInit {
   }
 
   setLikesOfPost(post){
-    console.log("POST emitter");
-    console.log(post);
-    
     if(post){
       // SEND TO DB (client updated on post comp directly)
-      console.log("THIS POST ID: " + post.post_id);
-      this.subscriptionPost = this.postApiService.updateLikes(post)
-      .subscribe((res)=>{
-        console.log("postApiService.updateLikes.");
-        console.log(res);
-      })
+      // console.log("THIS POST ID: " + post.post_id);
+      this.subscriptionPost = this.postApiService.updateLikes(post).subscribe();
     }
   }
 

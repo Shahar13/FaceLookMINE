@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 /* import components */
+import { GuardService } from './common/service/guard.service';
 import { LogInComponent } from './registration/components/log-in/log-in.component'
 import { RegisterComponent } from './registration/components/register/register.component'
 import { ForgetPasswordComponent } from './registration/components/forget-password/forget-password.component'
@@ -9,7 +10,6 @@ import { socialComponent } from './social/social.component';
 import { SharePostComponent } from './social/components/share-post/share-post.component'
 import { FriendsComponent } from './social/components/friends/friends.component'
 import { PostsComponent } from './social/components/posts/posts.component';
-import { GuardService } from './common/service/guard.service';
 
 
 const routes: Routes = [

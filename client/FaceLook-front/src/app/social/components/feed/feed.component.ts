@@ -1,7 +1,9 @@
 import { Component, OnInit } from "@angular/core";
+import { Observable, Subscription } from 'rxjs';
+import { ToastrService } from "ngx-toastr";
+
 // import { postsFilterService } from "../models/postsFilter.model";
 import { postApiService } from '../../service/postApi.service';
-import { ToastInjector } from "ngx-toastr";
 
 @Component({
   selector: "app-feed",
@@ -18,50 +20,47 @@ export class FeedComponent implements OnInit {
     imageTags: '',
     userTags: ''
   };
+  tempSubscription: Subscription;
 
   constructor(
     // public postsFilterService: postsFilterService,
     private _postApiService: postApiService,
-    // public toastr: ToastInjector
-    ) { }
+    public toastr: ToastrService
+  ) { }
 
-  ngOnInit() { }
+  ngOnInit() {
+  }
 
   search() {
     console.log("SERACH FORM DATA ==>");
     console.log(this.postsFilter);
     
-    
     //obj created dynamically 
     if (Object.keys(this.postsFilter).length > 0) {
-      console.log("TEST");
-      
       //filter by radius
       if(this.postsFilter.radiusFrom){
         navigator.geolocation.getCurrentPosition((positionCallback) => {
-
           this.postsFilter.positionCallback = {
             latitude: positionCallback.coords.latitude,
             longitude: positionCallback.coords.longitude
           };
 
-          let tempSub = this._postApiService.getFilterPosts(this.postsFilter).subscribe();
-          console.log("tempSub " + tempSub);
-          
+          this.tempSubscription = this._postApiService.getFilterPosts(this.postsFilter).subscribe();
+          console.log("tempSubscription ==>");
+          console.log(this.tempSubscription);
         },
         err =>{
-          // this._toast.error(err);
-          // this._toast
-          // this.toastr.error(error.message, "Error in feed search");
-          // this.toastr.get("Error in feed search");
-          alert(err);
+          this.toastr.error(err + "Error in register");
         })
       }
       else{
        this._postApiService.getFilterPosts(this.postsFilter).subscribe();
       }
-
-      
     }
   }
+
+  ngOnDestroy() {
+    this.tempSubscription.unsubscribe();
+  }
+
 }
