@@ -220,8 +220,8 @@ function updateLikes(post, callback) {
   });
 }
 
-function getFriends(callback) {
-  console.log("dbmaneger: getFriends call()");
+function getUsers(callback) {
+  console.log("dbmaneger: getUsers call()");
   const query = `select _id, name, role, email, active
                 from Users 
                 `;
@@ -245,5 +245,5 @@ module.exports = {
   addPost_Tag,
   getAllPosts,
   updateLikes,
-  getFriends
+  getUsers
 };

@@ -8,7 +8,7 @@ import { RegisterComponent } from './registration/components/register/register.c
 import { ForgetPasswordComponent } from './registration/components/forget-password/forget-password.component'
 import { socialComponent } from './social/social.component';
 import { SharePostComponent } from './social/components/share-post/share-post.component'
-import { FriendsComponent } from './social/components/friends/friends.component'
+import { UsersComponent } from './social/components/users/users.component'
 import { PostsComponent } from './social/components/posts/posts.component';
 
 
@@ -20,7 +20,7 @@ const routes: Routes = [
   { path: 'forgotpassword', component: ForgetPasswordComponent, canActivate: [GuardService], data: { jwtNeeded: true } },
   { path: 'social', component: socialComponent, canActivate: [GuardService], data: { jwtNeeded: true } },
   { path: 'sharePost', component: SharePostComponent, canActivate: [GuardService], data: { jwtNeeded: true } },
-  { path: 'friends', component: FriendsComponent, canActivate: [GuardService], data: { jwtNeeded: true } },
+  { path: 'users', component: UsersComponent, canActivate: [GuardService], data: { jwtNeeded: true } },
   { path: 'posts', component: PostsComponent, canActivate: [GuardService], data: { jwtNeeded: true } },
 
   { path: '**', redirectTo: "login" }

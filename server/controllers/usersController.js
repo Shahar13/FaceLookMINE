@@ -1,12 +1,12 @@
 const db = require("../repository/dbmaneger");
 
-function getFriends(req, res) {
+function getUsers(req, res) {
   try {
-    db.getFriends(friends => {
-      res.status(201).json(friends? friends : []);
+    db.getUsers(users => {
+      res.status(201).json(users? users : []);
     });
   } catch (error) {
-    console.log("getFriends ==> " + error);
+    console.log("getUsers ==> " + error);
     res.status(401).json({
       message: "Failure, try again"
     });
@@ -14,5 +14,5 @@ function getFriends(req, res) {
 }
 
 module.exports = {
-    getFriends
+    getUsers
 };

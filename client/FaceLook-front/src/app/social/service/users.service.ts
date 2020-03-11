@@ -5,16 +5,16 @@ import { HttpClient} from "@angular/common/http";
   providedIn: "root"
 })
 
-export class FriendsService {
+export class UsersService {
 
-    url = "http://localhost:3000/friends/";
-    // public allFriends: any = {};
+    url = "http://localhost:3000/users/";
+    // public allUsers: any = {};
 
   constructor(
     private httpClient: HttpClient
   ) {}
 
-  getAllfriends(){
-    return this.httpClient.get(this.url + "getFriends");
+  getAllUsers(){
+    return this.httpClient.get(this.url + "getUsers");
   }
 }

@@ -1,20 +1,20 @@
 import { TestBed, getTestBed } from '@angular/core/testing';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 
-import { FriendsService } from './friends.service';
+import { UsersService } from './users.service';
 
-fdescribe('FriendsService', () => {
-  let service: FriendsService;
+fdescribe('UsersService', () => {
+  let service: UsersService;
   let injector: TestBed;
   let httpMock: HttpTestingController;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [HttpClientTestingModule],
-      providers: [FriendsService]
+      providers: [UsersService]
     });
     injector = getTestBed();
-    service = injector.get(FriendsService);
+    service = injector.get(UsersService);
     httpMock = injector.get(HttpTestingController);
   });
 
@@ -32,12 +32,12 @@ fdescribe('FriendsService', () => {
       { login: 'Doe' }
     ];
 
-   service.getAllfriends().subscribe((friends:any) => {
-      expect(friends.length).toBe(2);
-      expect(friends).toEqual(dummyUsers);
+   service.getAllUsers().subscribe((users:any) => {
+      expect(users.length).toBe(2);
+      expect(users).toEqual(dummyUsers);
     });
 
-    const req = httpMock.expectOne('http://localhost:3000/friends/getFriends');
+    const req = httpMock.expectOne('http://localhost:3000/users/getUsers');
     expect(req.request.method).toBe("GET");
     req.flush(dummyUsers);
   });

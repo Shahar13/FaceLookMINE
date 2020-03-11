@@ -10,9 +10,9 @@ import { Subscription } from 'rxjs';
 
 export class HeaderComponent implements OnInit {
 
-  // public friendSearch: any = {};
-  public friendSearch: string = '';
-  private tempFriendSubscription: Subscription; 
+  // public userSearch: any = {};
+  public userSearch: string = '';
+  private tempUserUserSubscription: Subscription; 
 
   constructor(
     private rout: Router
@@ -27,14 +27,14 @@ export class HeaderComponent implements OnInit {
     this.rout.navigate(['/']);
   }
 
-  searchFriend(){
-    console.log("this.friendSearch ==> " + this.friendSearch);
-    // this.tempFriendSubscription = this._postApiService.getFilterPosts(this.postsFilter).subscribe();
-    // this.rout.navigate(['/search/' + this.friendSearch]);
+  searchUser(){
+    console.log("this.userSearch ==> " + this.userSearch);
+    // this.tempUserSubscription = this._postApiService.getFilterPosts(this.postsFilter).subscribe();
+    // this.rout.navigate(['/search/' + this.userSearch]);
   }
 
   ngOnDestroy() {
-    this.tempFriendSubscription.unsubscribe();
+    // this.tempUserSubscription.unsubscribe();
   }
 
 }

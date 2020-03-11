@@ -17,20 +17,20 @@
                     <a routerLink="/sharePost">Publish new post</a>
                 </li>
                 <li>
-                    <a routerLink="/friends">Friends</a>
+                    <a routerLink="/users">Users</a>
                 </li>
                 <li>
                     <a routerLink="/social">Feed and Map (social)</a>
                 </li>
                 <li>
-                    <a routerLink="/posts">All posts</a>
+                    <a routerLink="/posts">Posts</a>
                 </li>
             </ul>
 
             <div class="navbar-form navbar-right">
                 <div class="form-group">
-                    <input [(ngModel)]="friendSearch" type="text" class="form-control" placeholder="Search your firend" />
-                    <button (click)="searchFriend()" id="btnSearch" class="btn btn-primary btn_search">Search</button>
+                    <input [(ngModel)]="userSearch" type="text" class="form-control" placeholder="Search your firend" />
+                    <button (click)="searchUser()" id="btnSearch" class="btn btn-primary btn_search">Search</button>
 
                     <span (click)="userLogout()" class="logout">Logout</span>
                 </div>

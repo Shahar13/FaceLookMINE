@@ -19,11 +19,12 @@ import { socialComponent } from "./social/social.component";
 import { FeedComponent } from "./social/components/feed/feed.component";
 import { MapComponent } from "./social/components/map/map.component";
 import { SharePostComponent } from './social/components/share-post/share-post.component';
-import { FriendsComponent } from './social/components/friends/friends.component';
+import { UsersComponent } from './social/components/users/users.component';
 import { postApiService } from './social/service/postApi.service';
 import { HeaderComponent } from './header/header/header.component';
 import { PostsComponent } from './social/components/posts/posts.component';
 import { PostComponent } from './social/components/post/post.component';
+import { UserComponent } from './social/components/user/user.component';
 
 @NgModule({
   declarations: [
@@ -35,10 +36,11 @@ import { PostComponent } from './social/components/post/post.component';
     FeedComponent,
     MapComponent,
     SharePostComponent,
-    FriendsComponent,
+    UsersComponent,
     HeaderComponent,
     PostsComponent,
-    PostComponent
+    PostComponent,
+    UserComponent
   ],
   imports: [
     BrowserModule,

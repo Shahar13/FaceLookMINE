@@ -60,7 +60,7 @@ export class FeedComponent implements OnInit {
   }
 
   ngOnDestroy() {
-    this.tempSubscription.unsubscribe();
+    // this.tempSubscription.unsubscribe();
   }
 
 }
