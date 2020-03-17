@@ -14,10 +14,12 @@ export class PostComponent implements OnInit {
 
   likeClicked: boolean = false;
 
-  constructor() { }
+  constructor(
+  ) { }
 
   ngOnInit(): void {
-    console.log(this.post)
+    console.log("post comp ==> ");
+    console.log(this.post);
   }
 
   addLike(post: any){

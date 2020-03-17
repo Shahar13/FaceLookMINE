@@ -6,7 +6,6 @@
           All Posts
         </h2>
         <div *ngFor="let post of posts" class="wrap">
-          <!-- <app-post [post]="post" (likesEmitter)="setLikesOfPost($event)"></app-post> -->
           <app-post [post]="post" (likesEmitter)="setLikesOfPost(post)"></app-post>
         </div>
       

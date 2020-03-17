@@ -1,0 +1,18 @@
+<!-- <div __*ngIf="!postCreated" class=""> -->
+<div class="add_comment_wrap">
+    <div class="form-group">
+        <textarea [(ngModel)]="comment" required class="form-control" name="comment"  cols="5" rows="5" placeholder="Your comment"></textarea>
+        <button [disabled]="commented" class="btn btn-primary add_comment_btn"
+            (click)="addComment()">
+            Submit your comment
+        </button>
+    </div>
+</div>
+
+<!-- <div __*ngIf="postCreated" class="login-form"> -->
+<!-- <div class="login-form">
+    SUCCESS creating a post. 
+    <br />
+    You are redirected in 2 seconds to the Posts page.
+</div> -->
+

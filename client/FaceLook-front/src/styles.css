@@ -12,7 +12,15 @@ BODY{
   float: right;
 }
 
+.border{
+  border: solid 1px red;
+}
+
 .bold{font-weight: bold;}
+
+.font_reg{
+  font-weight: normal;
+}
 
 HR{
   margin: 0;

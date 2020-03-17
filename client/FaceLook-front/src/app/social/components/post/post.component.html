@@ -1,24 +1,47 @@
-<div class="fLeft" *ngIf="post">
-    <div class="user_name">
-        {{post.name}}: {{post.title}}
-    </div>
-    <div class="user_details">
-        <span class="bold">Date of post:</span> {{post.date | date}}
+<div class="">
+    <div class="fLeft" *ngIf="post">
+        <div class="user_name">
+            <div>Title: <span class="font_reg">{{post.title}}</span></div>
+            <div>Publisher: <span class="font_reg">{{post.name}}</span></div>
+        </div>
+        <div class="user_details">
+            <span class="bold">Date of post:</span> {{post.date | date}}
+            <hr />
+            {{post.text}}
+        </div>
         <hr />
-        {{post.text}}
-    </div>
-    <div style="font-weight: bold;margin-top: 33px;">
+        <div class="tags_wrap">
+            TAGS: 
+            <div class="tags">
+                #{{post.text_tag}}
+            </div>
+        </div>
         <hr />
-        TAGS: #{{post.text_tag}}
     </div>
-</div>
 
-<div class="fRight">
-    <img src="{{imgPath}}{{post.image}}" class="user_img fRight" title="{{post.name}}" />
+    <div class="fRight">
+        <img src="{{imgPath}}{{post.image}}" class="user_img fRight" title="{{post.name}}" />
 
-    <div (click)="addLike(post)"
-        class="likes_div likes_div_SELECTOR" 
-        id="{{post.post_id}}">
-        <span>{{post.likes}}</span> Liks <img src="./assets/img/like.png" class="like_icon" title="Like me or die" />
+        <div (click)="addLike(post)"
+            class="likes_div likes_div_SELECTOR" 
+            id="{{post.post_id}}">
+            <span>{{post.likes}}</span> Liks <img src="./assets/img/like.png" class="like_icon" title="Like me or die" />
+        </div>
+    </div>
+    <br clear="all" />
+    <div class="comments_add">
+        <button data-toggle="collapse" [attr.data-target]="'#addComment_' + post.post_id" class="btn btn-primary" title="Add a comment">Add a comment</button>
+        <div id="addComment_{{post.post_id}}" class="collapse">
+            <app-add-comment [post]="post"></app-add-comment>
+        </div>
+    </div>
+    <div class="comments_main">
+        <div class="comments_open" data-toggle="collapse"  [attr.data-target]="'#comments_' + post.post_id">
+            Read all comments >>
+        </div> 
+        
+        <div id="comments_{{post.post_id}}" class="collapse">
+            <app-comments [post]="post"></app-comments>
+        </div>
     </div>
 </div>

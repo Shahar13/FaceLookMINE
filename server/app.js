@@ -33,6 +33,7 @@ app.use("/", require("./routes/default"));
 app.use("/registration", require("./routes/registration")); 
 app.use("/social", require("./routes/social"));
 app.use("/users", require("./routes/users"));
+app.use("/comments", require("./routes/comments"));
 
 // ERROR HANDLING
 app.use((req, res, next) => {

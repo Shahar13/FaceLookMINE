@@ -25,6 +25,9 @@ import { HeaderComponent } from './header/header/header.component';
 import { PostsComponent } from './social/components/posts/posts.component';
 import { PostComponent } from './social/components/post/post.component';
 import { UserComponent } from './social/components/user/user.component';
+import { CommentsComponent } from './comments/comments/comments.component';
+import { CommentComponent } from './comments/comment/comment.component';
+import { AddCommentComponent } from './comments/add-comment/add-comment.component';
 
 @NgModule({
   declarations: [
@@ -40,7 +43,10 @@ import { UserComponent } from './social/components/user/user.component';
     HeaderComponent,
     PostsComponent,
     PostComponent,
-    UserComponent
+    UserComponent,
+    CommentComponent,
+    CommentsComponent,
+    AddCommentComponent,
   ],
   imports: [
     BrowserModule,
