@@ -25,7 +25,7 @@ async function addComment(req, res) {
 function getComments(req, res) {
     console.log("commentsController getComments, req.body ==>");
     console.log("%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%");
-    console.log(req.params);
+    // console.log(req.params);
     
     try {
         db.getComments(comments => {

@@ -4,7 +4,7 @@ const api = express.Router();
 const md_auth = require("../middlewares/authenticated");
 
 // api.get("/getComments", md_auth.ensureAuth, commentsController.getUsers);
-api.get("/getComments/:params", commentsController.getComments);
+api.get("/getComments", commentsController.getComments);
 // api.get("/getComments/:params", function(req, res) {
 //     console.log("************ /getComments/:someone ==> ");
 //     var username = req.params;

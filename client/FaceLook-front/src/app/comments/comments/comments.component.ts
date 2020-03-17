@@ -23,7 +23,7 @@ export class CommentsComponent implements OnInit {
 
   ngOnInit(): void {
     // this.subscriptionGet = this.commentsService.getComments(this.post.publisher_id)
-    this.subscriptionGet = this.commentsService.getComments(6)
+    this.subscriptionGet = this.commentsService.getComments()
       .subscribe((res) => {
         console.log("ALL COMMENTS");
         console.log(res);

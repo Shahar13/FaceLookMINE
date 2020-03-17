@@ -16,10 +16,11 @@ export class CommentsService {
     private httpClient: HttpClient
   ) { }
 
-  getComments(_publisherId) {
+  getComments() {
     // const params = new HttpParams().set('params', _publisherId);
     // return this.httpClient.get(this.url + "getComments", {params});
-    return this.httpClient.get(this.url + "getComments/" + _publisherId);
+    // return this.httpClient.get(this.url + "getComments/" + _publisherId);
+    return this.httpClient.get(this.url + "getComments");
   }
 
   addCommentToPost(params: any) {
