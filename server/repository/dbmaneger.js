@@ -69,13 +69,17 @@ async function changePassword(userEmail, newpassword) {
 
 async function addPost(post, callback) {
   console.log("dbManeger: addPost call()");
-  console.log(post.img);
+  console.log(post);
 
-  const query = `INSERT INTO Posts VALUES( '${post.post_id}','${post.user[0]._id}','${post.img}' , '${post.text}' , '${post.date}' ,
+  let _postId = '' + new mongoose.Types.ObjectId();
+  let _date = formatDate(new Date());
+
+  const query = `INSERT INTO Posts VALUES( '${_postId}','${post.user[0]._id}','${post.img}' , '${post.text}' , '${_date}' ,
    '${post.locationLocationLat}' , '${post.locationLocationLng}' , '${post.title}' , '0')`;
 
   await sql.query(connectionString, query, (err, res) => {
     if (err) console.log("from addPost", err);
+    post.postId = _postId;
     callback(post);
   });
 }
@@ -85,9 +89,9 @@ async function addTag(tag, callback) {
 
   find("Tags", "Text", tag.tag, result => {
     if (result.length < 1) {
-      tag.tag_id = new mongoose.Types.ObjectId();
+      tag.tagId = new mongoose.Types.ObjectId() + '';
       const query = `INSERT INTO Tags
-                     VALUES( '${tag.tag_id}', '${tag.tags}')`;
+                     VALUES( '${tag.tagId}', '${tag.tags}')`;
       sql.query(connectionString, query, (err, res) => {
         if (err) console.log("from addtag", err);
         callback(tag);
@@ -99,7 +103,11 @@ async function addTag(tag, callback) {
 async function addPost_Tag(post_tag, callback) {
   console.log("dbManeger: Post_Tag call()");
 
-  const query = `INSERT INTO Post_Tag VALUES( '${post_tag.post_id}', '${post_tag.tag_id}')`;
+  console.log("====================================================");
+  console.log(post_tag);
+
+
+  const query = `INSERT INTO Post_Tag VALUES( '${post_tag.post_id}', '${post_tag.tagId}')`;
   await sql.query(connectionString, query, (err, res) => {
     if (err) console.log("from addPost_tag", err);
     callback(post_tag);
@@ -160,7 +168,7 @@ function getFilterPosts(filters, callback) {
                   ${filterQuery}`;
   console.log("query ==> ");
   console.log(query);
-  
+
   sql.query(connectionString, query, (err, rows) => {
     if (err) console.log("from addPost_tag", err);
     callback(rows);
@@ -235,12 +243,15 @@ function getUsers(callback) {
 //////////////////////////////////////////
 async function addComment(params, callback) {
   console.log("dbManeger: addComment call()");
+console.log("PARAMS ==>");
+console.log(params);
+
 
   // new fields to params that are generated HERE
-  params.commentId = ''+ new mongoose.Types.ObjectId();
+  params.commentId = '' + new mongoose.Types.ObjectId();
   params.commentDate = formatDate(new Date());
-  
-  const query = `INSERT INTO Comments VALUES( '${params.commentId}', '${params.comment}', '${params.commentDate}',  '${params.commenterId}' )`;
+
+  const query = `INSERT INTO Comments VALUES( '${params.commentId}', '${params.comment}', '${params.commentDate}', '${params.commenterId}', '${params.postId}' )`;
   await sql.query(connectionString, query, (err, res) => {
     callback(params);
   });
@@ -249,7 +260,7 @@ async function addComment(params, callback) {
 async function addComment_Post(commentResult, callback) {
   console.log("dbManeger: addComment_Post call()");
   console.log(commentResult);
-  
+
   const query = `INSERT INTO Comment_Post VALUES( '${commentResult.commentId}','${commentResult.postId}' )`;
   await sql.query(connectionString, query, (err, res) => {
     callback(commentResult);
@@ -260,34 +271,21 @@ async function addComment_Post(commentResult, callback) {
 //////////////////////////////////////////
 //////////////////////////////////////////
 
-//////////////////////////////////////////
-//////////////////////////////////////////
-//////////////////////////////////////////
-async function getComments(callback) {
+async function getComments(_postId, callback) {
   console.log("dbmaneger: getComments call()");
+  console.log(_postId.params);
 
-  const query = `SELECT *
-                  FROM Comments 
-                  -- INNER JOIN Users on Comments.commenter_id = Users._id
-                  -- INNER JOIN Post_Tag on Posts.post_id = Post_Tag.post_id
-                  -- INNER JOIN Tags on Tags.id_tag = Post_Tag.tag_id
-                  -- INNER JOIN Users on Users._id = Posts.publisher_id
-                  -- ORDER BY Posts.date DESC
+  const query = `SELECT Comments.*, Users.name, Users._id
+                  FROM Comments
+                  INNER JOIN Users 
+                  ON Comments.commenter_id = Users._id
+                  WHERE Comments.post_id = '${_postId.params}'
                   `;
-
-  // sql.query(connectionString, query, (err, res) => {
-    // if (err) console.log("from dbManager getComments", err);
-    // else {
-    //   callback(rows);
-    // }
-  // });
-    await sql.query(connectionString, query, (err, res) => {
-      callback();
-    });
+  await sql.query(connectionString, query, (err, res) => {
+    if (err) console.log("EREROR ===> From dbManager getComments", err);
+    callback(res);
+  });
 }
-//////////////////////////////////////////
-//////////////////////////////////////////
-//////////////////////////////////////////
 
 
 module.exports = {

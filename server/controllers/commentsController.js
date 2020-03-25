@@ -22,13 +22,12 @@ async function addComment(req, res) {
     }
 }
 
-function getComments(req, res) {
-    console.log("commentsController getComments, req.body ==>");
-    console.log("%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%");
-    // console.log(req.params);
+async function getComments(req, res) {
+    console.log("commentsController getComments call()");
+    console.log(req.params);
     
     try {
-        db.getComments(comments => {
+        await db.getComments(req.params, comments => {
             res.status(201).json(comments ? comments : []);
         });
     } catch (error) {

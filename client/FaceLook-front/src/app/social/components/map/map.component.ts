@@ -32,23 +32,16 @@ export class MapComponent implements AfterViewInit {
     this.markers.subscribe(
       markers=>{
         this.myMap(markers);
-        ///////////////////////////////
-        ///////////////////////////////
-        // var options = {
-        //   imagePath: 'http://localhost:4200/assets/img/m'
-        // };
-        // console.log("this.markers");
-        // console.log(this.markers);
-        
-        // new MarkerClusterer(googleMap, this.markers, options)
-        ///////////////////////////////
-        ///////////////////////////////
       }
     )
 
   }
 
   myMap(markers) {
+    console.log("map comp marker ==>");
+    console.log(markers);
+    
+    
     let myCenter = {
       lat: this.userCurrentLocation.lat,
       lng: this.userCurrentLocation.lng
@@ -77,18 +70,6 @@ export class MapComponent implements AfterViewInit {
     });
     //add the marker of user curr location
     marker.setMap(googleMap);
-
-    // ///////////////////////////////
-    // ///////////////////////////////
-    // var options = {
-    //   imagePath: 'http://localhost:4200/assets/img/m'
-    // };
-    // console.log("this.markers");
-    // console.log(this.markers);
-    
-    // new MarkerClusterer(googleMap, this.markers, options)
-    // ///////////////////////////////
-    // ///////////////////////////////
 
     let wiredMarkers = {};
 

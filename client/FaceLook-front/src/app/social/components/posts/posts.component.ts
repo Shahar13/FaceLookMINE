@@ -21,6 +21,8 @@ export class PostsComponent implements OnInit {
     this.subscriptionGet = this.postApiService.getAllPostsAsPosts()
     .subscribe((res)=>{
       this.posts = res;
+      console.log("posts comp posts ==>");
+      console.log(this.posts);
     })
   }
 

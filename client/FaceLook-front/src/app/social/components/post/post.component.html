@@ -36,12 +36,13 @@
         </div>
     </div>
     <div class="comments_main">
-        <div class="comments_open" data-toggle="collapse"  [attr.data-target]="'#comments_' + post.post_id">
+        <div class="comments_open" 
+            (click)="getCommentsOfPost(post.post_id)" data-toggle="collapse"  [attr.data-target]="'#comments_' + post.post_id">
             Read all comments >>
         </div> 
         
         <div id="comments_{{post.post_id}}" class="collapse">
-            <app-comments [post]="post"></app-comments>
+            <app-comments [postComments]="postComments" [post]="post"></app-comments>
         </div>
     </div>
 </div>

@@ -89,6 +89,10 @@ export  class postApiService {
         }));
 
         // this.markersService.markers$.next(markersArr);
+        console.log("postApi SERVICE postsArr ==>");
+        console.log(postsArr);
+        
+        
         return postsArr;
       })
     );

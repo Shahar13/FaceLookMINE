@@ -11,6 +11,8 @@ import { CommentsService } from "../service/comments.service";
 export class CommentsComponent implements OnInit {
 
   @Input() post: any;
+  @Input() postComments: any = [];
+
   comments: any = [];
   publisherId: string;
   publisherName: string;
@@ -21,24 +23,7 @@ export class CommentsComponent implements OnInit {
 
   constructor(private commentsService: CommentsService) { }
 
-  ngOnInit(): void {
-    // this.subscriptionGet = this.commentsService.getComments(this.post.publisher_id)
-    this.subscriptionGet = this.commentsService.getComments()
-      .subscribe((res) => {
-        console.log("ALL COMMENTS");
-        console.log(res);
-        
-        ///////////////////////////////////////////
-        ///////////////////////////////////////////
-        ///////////////////////////////////////////
-        this.publisherId = this.post.publisher_id;
-        this.publisherName = this.post.name;
-        ///////////////////////////////////////////
-        ///////////////////////////////////////////
-        ///////////////////////////////////////////
-        
-        this.comments = res;
-      })
+  ngOnInit() {
   }
 
 

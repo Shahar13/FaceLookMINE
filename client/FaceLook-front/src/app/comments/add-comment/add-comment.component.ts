@@ -31,6 +31,7 @@ export class AddCommentComponent implements OnInit {
     
     this.commented = true;
     this.commentsService.addCommentToPost(params);
+    this.comment = 'Thanks you. Your comment was added.';
   }
 
 }

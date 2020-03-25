@@ -1,4 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Subscription } from 'rxjs';
+import { CommentsService } from 'src/app/comments/service/comments.service';
 
 @Component({
   selector: 'app-post',
@@ -14,12 +16,16 @@ export class PostComponent implements OnInit {
 
   likeClicked: boolean = false;
 
+  subscriptionGet: Subscription;
+  postComments: any = [];
+  
   constructor(
+    private commentsService: CommentsService
   ) { }
 
   ngOnInit(): void {
-    console.log("post comp ==> ");
-    console.log(this.post);
+    // console.log("post comp ==> ");
+    // console.log(this.post);
   }
 
   addLike(post: any){
@@ -32,4 +38,11 @@ export class PostComponent implements OnInit {
     } 
   }
 
+  getCommentsOfPost(postId){
+    this.subscriptionGet = this.commentsService.getComments(postId)
+    .subscribe((res) => {
+      this.postComments = res;
+    })
+  }
+  
 }

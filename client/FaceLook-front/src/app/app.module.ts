@@ -26,7 +26,7 @@ import { PostsComponent } from './social/components/posts/posts.component';
 import { PostComponent } from './social/components/post/post.component';
 import { UserComponent } from './social/components/user/user.component';
 import { CommentsComponent } from './comments/comments/comments.component';
-import { CommentComponent } from './comments/comment/comment.component';
+// import { CommentComponent } from './comments/comment/comment.component';
 import { AddCommentComponent } from './comments/add-comment/add-comment.component';
 
 @NgModule({
@@ -44,7 +44,6 @@ import { AddCommentComponent } from './comments/add-comment/add-comment.componen
     PostsComponent,
     PostComponent,
     UserComponent,
-    CommentComponent,
     CommentsComponent,
     AddCommentComponent,
   ],

@@ -3,6 +3,7 @@ const db = require("../repository/dbmaneger");
 async function addPost(req, res) {
   req.body.user = req.user;
   req.body.img = req.image;
+
   try {
     await db.addPost(req.body, postResult => {
       db.addTag(postResult, tagResult => {
