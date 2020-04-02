@@ -226,7 +226,7 @@ function updateLikes(post, callback) {
 
 function getUsers(callback) {
   console.log("dbmaneger: getUsers call()");
-  const query = `select _id, name, role, email, active
+  const query = `select _id, name, role, email, active, image
                 from Users 
                 `;
 

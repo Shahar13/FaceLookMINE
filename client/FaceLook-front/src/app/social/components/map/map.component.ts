@@ -75,6 +75,9 @@ export class MapComponent implements AfterViewInit {
 
     //////// second on the map: all posts
     markers.forEach(elm => {
+      console.log("MAP elm");
+      console.log(elm);
+      
       //create post location coordinates
       let postLocation = { lat: +elm.lat, lng: +elm.lng };
 
@@ -95,10 +98,11 @@ export class MapComponent implements AfterViewInit {
       let bubbleDiv = `
         <div class="info_content">
           <p>
-            <b>${elm.title}</b>,
-            Heritage Site.
+            Title: <b>${elm.title}</b>
+            <br />
+            Publisher: <b>${elm.publisherName}</b>
           </p>
-          <p>${elm.text}</p>
+          <p><a (onclick)="openPost('${elm.postId}')">READ ME</a></p>
         </div>`;
 
       //add bubbles to the map
@@ -114,4 +118,10 @@ export class MapComponent implements AfterViewInit {
     });
   }
 
+
+  openPost(postId){
+    console.log("POST ID: ");
+    console.log(postId);
+
+  }
 }

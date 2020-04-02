@@ -8,11 +8,14 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 export class UserComponent implements OnInit {
   
   @Input() user: any;
+  
+  imgPath: string = 'http://localhost:3000/public/uploads/images/';
 
   constructor() { }
 
   ngOnInit(): void {
-    console.log("user " + this.user)
+    console.log("user ==>")
+    console.log(this.user)
   }
 
 }

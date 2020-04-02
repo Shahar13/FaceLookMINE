@@ -1,9 +1,18 @@
-<div class="fLeft" *ngIf="user">
-    <div class="user_name bold">
-        {{user.name}},
+<div *ngIf="user">
+    <div class="fLeft">
+        <div class="user_name bold">
+            {{user.name}},
+        </div>
+        <div class="user_details">
+            <a href="mailto:{{user.email}}" class="">{{user.email}}</a>
+        </div>
     </div>
-    <div class="user_details">
-        <a href="mailto:{{user.email}}" class="">{{user.email}}</a>
+    <div class="fRight">
+        <div class="user_image">
+            <!-- <img src="{{imgPath}}{{user.image}}" class="user_img" title="{{post.name}}" /> -->
+        </div>
+        
     </div>
+
 </div>
 

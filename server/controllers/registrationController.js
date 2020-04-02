@@ -5,22 +5,33 @@ const db = require("../repository/dbmaneger");
 
 async function register(req, res) {
     console.log("registration Controller: register call()");
+    console.log("================= req.body ==>");
+    console.log(req.body);
+
+    // // Display the values
+    // for (const key of Object.keys(tempData)) {
+    //     console.log(key, tempData[key]);
+    // }
+
     try {
         //check if user exist
         await db.find("Users", "email", req.body.email, users => {
-            if (users.length >= 1) {
-                return res.status(401).json({
-                    message: "user already exist,try again"
-                });
-            }
+            // if (users.length >= 1) {
+            //     return res.status(401).json({
+            //         message: "user already exist,try again"
+            //     });
+            // }
+
+            // COMMENTED FOR NOW
             //create && save new user send mail to verify
-            db.addUser(req.body, result => {
-                mailer.verifyAccountMail(result);
-                return res.status(201).json({
-                    message:
-                        "User Created Successfully , Please check Your Mail To Verify Your Account"
-                });
-            });
+            // db.addUser(req.body, result => {
+            //     // COMMENTED FOR NOW
+            //     // mailer.verifyAccountMail(result);
+            //     return res.status(201).json({
+            //         message:
+            //             "User Created Successfully , Please check Your Mail To Verify Your Account"
+            //     });
+            // });
         });
     } catch (error) {
         return res.status(401).json({
@@ -34,8 +45,8 @@ async function login(req, res) {
     try {
         //try find request user
         await db.find("Users", "email", req.body.email, user => {
-                console.log(user);
-                
+            console.log(user);
+
             if (user.length >= 1) {
                 //check the activation
                 if (!user[0].active) {
@@ -75,12 +86,12 @@ async function verifyAccount(req, res) {
 
     try {
         await db.find("Users", "_id", req.body.id, user => {
-            console.log("registrationFind:" ,user);
+            console.log("registrationFind:", user);
             if (user.active) {
                 res.status(200).json({});
             } else {
                 db.verifyAccount(req.body.id, result => {
-                    console.log("registrationVerify:" ,result);
+                    console.log("registrationVerify:", result);
                     res.status(200).json({
                         message: "active account Successfully , you can log in now"
                     });

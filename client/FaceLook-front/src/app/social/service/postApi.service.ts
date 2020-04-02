@@ -33,6 +33,7 @@ export  class postApiService {
           postId: post.post_id,
           title: post.title,
           publisherId: post.publisher_id,
+          publisherName: post.name,
           text: post.text,
           image: post.image,
           lat: post.latitude,
@@ -91,8 +92,7 @@ export  class postApiService {
         // this.markersService.markers$.next(markersArr);
         console.log("postApi SERVICE postsArr ==>");
         console.log(postsArr);
-        
-        
+
         return postsArr;
       })
     );
