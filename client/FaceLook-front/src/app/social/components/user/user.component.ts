@@ -14,8 +14,12 @@ export class UserComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-    console.log("user ==>")
+    console.log("user component: single user ==>")
     console.log(this.user)
+  }
+
+  addfriend(friendId){
+    console.log("user component: friendId ==> " + friendId);
   }
 
 }

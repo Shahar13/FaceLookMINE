@@ -5,33 +5,35 @@ const db = require("../repository/dbmaneger");
 
 async function register(req, res) {
     console.log("registration Controller: register call()");
-    console.log("================= req.body ==>");
-    console.log(req.body);
+    //req contains the following fields:
+    // req.image
+    // req.body.name
+    // req.body.email
+    // req.body.password 
 
-    // // Display the values
-    // for (const key of Object.keys(tempData)) {
-    //     console.log(key, tempData[key]);
-    // }
+    // add image field to req.body so to be used in the db.addUser func below
+    req.body.userPicture = req.image;
 
     try {
         //check if user exist
         await db.find("Users", "email", req.body.email, users => {
+
+            // COMMENTED FOR TESTINGS
             // if (users.length >= 1) {
             //     return res.status(401).json({
             //         message: "user already exist,try again"
             //     });
             // }
 
-            // COMMENTED FOR NOW
             //create && save new user send mail to verify
-            // db.addUser(req.body, result => {
-            //     // COMMENTED FOR NOW
-            //     // mailer.verifyAccountMail(result);
-            //     return res.status(201).json({
-            //         message:
-            //             "User Created Successfully , Please check Your Mail To Verify Your Account"
-            //     });
-            // });
+            db.addUser(req.body, result => {
+                // COMMENTED FOR NOW
+                mailer.verifyAccountMail(result);
+                return res.status(201).json({
+                    message:
+                        "User Created Successfully , Please check Your Mail To Verify Your Account"
+                });
+            });
         });
     } catch (error) {
         return res.status(401).json({
@@ -68,11 +70,6 @@ async function login(req, res) {
                         message: "Auth failed"
                     });
             }
-            // if (err) {
-            //     return res.status(401).json({
-            //         message: "Auth failed"
-            //     });
-            // }
         });
     } catch (error) {
         return res.status(401).json({

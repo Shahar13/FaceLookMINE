@@ -15,10 +15,8 @@ export class RegisterComponent implements OnInit {
 
   urlTemp = null;
   uploadedFile: File = null;
+  isRegisered = false;
 
-  data: any = {
-    userPicture: ''
-  };
   constructor(
     private router: Router,
     private route: ActivatedRoute,
@@ -32,25 +30,24 @@ export class RegisterComponent implements OnInit {
   }
 
   register() {
+    ///////////////////////////////////////////////////////////////////
+    // data is collected DRECTLY FROM FOM IN THE HTML 
+    // only this.uploadedFile is taken by the onSelectFile function
+    ///////////////////////////////////////////////////////////////////
     const formData: FormData = new FormData();
-    // formData.append('userPicture', this.uploadedFile);
-    //collection of ALL other fields BUT the uploaded file field.
-    ///////////////////////////////////////////////////////////////////
-    ///////////////////////////////////////////////////////////////////
-    ///////////////////////////////////////////////////////////////////
-    ///////////////////////////////////////////////////////////////////
-    // formData.append('userData', JSON.stringify(this.userService.userData));
-    formData.append('userData', this.userService.userData);
-    ///////////////////////////////////////////////////////////////////
-    ///////////////////////////////////////////////////////////////////
-    ///////////////////////////////////////////////////////////////////
-    ///////////////////////////////////////////////////////////////////
 
+    formData.append('userPicture', this.uploadedFile);
+    //collection of ALL other fields BUT the uploaded file field.
+    formData.append('name', this.userService.userData.name);
+    formData.append('email', this.userService.userData.email);
+    formData.append('password', this.userService.userData.password);
+    
     //api call
     this.api.register(formData).subscribe(
       res => {
         //give client message
-        this.toastr.success(res["message"], "Success")
+        this.toastr.success(res["message"], "Success");
+        this.isRegisered = true;
       },
       error => {
         this.toastr.error(error.error.message, "Error in register");
@@ -69,7 +66,6 @@ export class RegisterComponent implements OnInit {
       };
 
       this.uploadedFile = <File>event.target.files[0];
-      this.data.userPicture = this.uploadedFile;
     }
   }
 

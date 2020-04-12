@@ -9,9 +9,11 @@
     </div>
     <div class="fRight">
         <div class="user_image">
-            <!-- <img src="{{imgPath}}{{user.image}}" class="user_img" title="{{post.name}}" /> -->
+            <!-- {{imgPath}}{{user.picture}} -->
+            <img src="{{imgPath}}{{user.picture}}" class="user_img" title="{{user.name}}" />
+            <br />
+            <div (click)="addfriend(user._id)" class="add_friend">Add to your Friends</div>
         </div>
-        
     </div>
 
 </div>

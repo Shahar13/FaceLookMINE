@@ -7,7 +7,7 @@
     enctype="multipart/form-data"
   >
     <h2 class="text-center">Sign Up</h2>
-    
+
     <div class="user_img_wrap">
       <img class="user_img" [src]="urlTemp?urlTemp:'../assets/img/anonym.png'" alt="Tempo User Image" />
     </div>
@@ -17,7 +17,8 @@
       <input type="file" accept="image/*" 
       name="userPicture"
       (change)="onSelectFile($event)" 
-      class="form-control" placeholder="Your picture" />
+      class="form-control" placeholder="Your picture"
+      [disabled]="isRegisered" />
     </div>
     
     <div class="form-group">
@@ -29,6 +30,7 @@
         class="form-control"
         placeholder="Name"
         required="required"
+        [disabled]="isRegisered"
       />
     </div>
     <div class="form-group">
@@ -40,6 +42,7 @@
         class="form-control"
         placeholder="Email"
         required="required"
+        [disabled]="isRegisered"
       />
     </div>
     <div class="form-group">
@@ -51,13 +54,14 @@
         class="form-control"
         placeholder="Password"
         required="required"
+        [disabled]="isRegisered"
       />
     </div>
     <div class="form-group">
       <button
         type="submit"
         class="btn btn-primary btn-block"
-        [disabled]="f.invalid"
+        [disabled]="f.invalid || isRegisered"
       >
         Sign Up
       </button>

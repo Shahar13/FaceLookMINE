@@ -17,12 +17,13 @@ async function find(table, key, userKey, callback) {
 }
 
 async function addUser(user, callback) {
-  console.log("dbManeger: addUser call()");
-
+  console.log("dbManeger: addUser call() : user data ==> ");
+  console.log(user);
+  
   user.password = await bcrypt.createHashPassword(user.password);
   user._id = new mongoose.Types.ObjectId();
 
-  const query = `INSERT INTO Users VALUES( '${user._id}','${user.name}' , '${user.password}' , 'user' , '${user.email}' , '0')`;
+  const query = `INSERT INTO Users VALUES( '${user._id}','${user.name}', '${user.password}' , 'user', '${user.email}', '0', '${user.userPicture}')`;
   await sql.query(connectionString, query, (err, res) => {
     callback(user);
   });
@@ -226,7 +227,7 @@ function updateLikes(post, callback) {
 
 function getUsers(callback) {
   console.log("dbmaneger: getUsers call()");
-  const query = `select _id, name, role, email, active, image
+  const query = `select _id, name, role, email, active, picture
                 from Users 
                 `;
 
@@ -238,9 +239,6 @@ function getUsers(callback) {
   });
 }
 
-//////////////////////////////////////////
-//////////////////////////////////////////
-//////////////////////////////////////////
 async function addComment(params, callback) {
   console.log("dbManeger: addComment call()");
 console.log("PARAMS ==>");
@@ -267,9 +265,6 @@ async function addComment_Post(commentResult, callback) {
   });
 }
 
-//////////////////////////////////////////
-//////////////////////////////////////////
-//////////////////////////////////////////
 
 async function getComments(_postId, callback) {
   console.log("dbmaneger: getComments call()");

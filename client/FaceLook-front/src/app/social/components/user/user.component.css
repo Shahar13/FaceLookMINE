@@ -1,0 +1,31 @@
+.user_name{
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.user_details{
+    font-size: 1.2rem;
+    line-height: 2.6rem;
+    max-width: 820px;
+}
+
+.user_img{
+    min-width: 150px;
+    max-width: 150px;
+    /* max-height: 100px; */
+}
+
+.add_friend{
+    display: block;
+    text-align: center;
+    padding: 10px 0 0 0;
+    color: #337ab7;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.add_friend:hover{
+    color: #23527c;
+    text-decoration: underline;
+}
