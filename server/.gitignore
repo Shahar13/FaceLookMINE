@@ -1,7 +1,7 @@
 # See http://help.github.com/ignore-files/ for more about ignoring files.
 /public
 ../פרוייקט שלב ב.pdf
-../TASKS_ON_PROJECT.doc
+../TASKS_ON_PROJECT.docx
 # compiled output
 /dist
 /tmp
