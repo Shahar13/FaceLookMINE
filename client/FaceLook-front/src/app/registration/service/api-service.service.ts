@@ -28,15 +28,6 @@ export class registrationApiService {
   }
 
   register(user) {
-    console.log("api service FormData value 'user' ==>");
-    console.log('will go to this url in the sever => ' + this.url + "register");
-    console.log(user);
-    
-    // Display the values
-    // for (let value of user.values()) {
-    //   console.log(value);
-    // }
-
     return this.httpClient.post(this.url + "register", user);
   }
 

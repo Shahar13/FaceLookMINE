@@ -17,4 +17,8 @@ export class UsersService {
   getAllUsers(){
     return this.httpClient.get(this.url + "getUsers");
   }
+  
+  addFriend(friendshipData: any){    
+    return this.httpClient.post(this.url + "addFriend", {friendshipData});
+  }
 }

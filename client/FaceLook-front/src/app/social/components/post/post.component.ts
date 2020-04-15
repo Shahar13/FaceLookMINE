@@ -24,8 +24,6 @@ export class PostComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    // console.log("post comp ==> ");
-    // console.log(this.post);
   }
 
   addLike(post: any){

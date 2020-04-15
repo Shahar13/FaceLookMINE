@@ -9,10 +9,10 @@
     </div>
     <div class="fRight">
         <div class="user_image">
-            <!-- {{imgPath}}{{user.picture}} -->
             <img src="{{imgPath}}{{user.picture}}" class="user_img" title="{{user.name}}" />
             <br />
-            <div (click)="addfriend(user._id)" class="add_friend">Add to your Friends</div>
+            <!-- [ngClass]="isClicked ? 'success' : 'danger'" -->
+            <button [disabled]="isClicked" (click)="addFriend(user._id)" class="form-control">Add to your Friends</button>
         </div>
     </div>
 

@@ -18,17 +18,17 @@ async function register(req, res) {
         //check if user exist
         await db.find("Users", "email", req.body.email, users => {
 
-            // COMMENTED FOR TESTINGS
-            // if (users.length >= 1) {
-            //     return res.status(401).json({
-            //         message: "user already exist,try again"
-            //     });
-            // }
+            if (users.length >= 1) {
+                return res.status(401).json({
+                    message: "user already exist,try again"
+                });
+            }
 
             //create && save new user send mail to verify
             db.addUser(req.body, result => {
-                // COMMENTED FOR NOW
+
                 mailer.verifyAccountMail(result);
+
                 return res.status(201).json({
                     message:
                         "User Created Successfully , Please check Your Mail To Verify Your Account"
@@ -47,8 +47,6 @@ async function login(req, res) {
     try {
         //try find request user
         await db.find("Users", "email", req.body.email, user => {
-            console.log(user);
-
             if (user.length >= 1) {
                 //check the activation
                 if (!user[0].active) {
@@ -60,6 +58,7 @@ async function login(req, res) {
                 //check password
                 if (bcrypt.checkPassword(req.body.password, user.password)) {
                     let token = jwt.createtoken(user);
+
                     return res.status(200).json({
                         message: "Auth successful",
                         user: user,

@@ -241,9 +241,6 @@ function getUsers(callback) {
 
 async function addComment(params, callback) {
   console.log("dbManeger: addComment call()");
-console.log("PARAMS ==>");
-console.log(params);
-
 
   // new fields to params that are generated HERE
   params.commentId = '' + new mongoose.Types.ObjectId();
@@ -282,6 +279,22 @@ async function getComments(_postId, callback) {
   });
 }
 
+async function addFriend(params, callback) {
+  console.log("dbManeger: addFriend call()");
+
+  const query = `INSERT INTO user_friends VALUES( '${params.friendshipData.friendId}', '${params.friendshipData.friendId}', 'yes' )`;
+  await sql.query(connectionString, query, (err, res) => {
+    if (err) {
+      console.log("dbManeger: addFriend ERROR ===> ", err);
+      // callback(err);
+    }
+    else {
+      res = "OK";
+      callback(res);
+    }
+  });
+}
+
 
 module.exports = {
   getFilterPosts,
@@ -297,5 +310,6 @@ module.exports = {
   getUsers,
   addComment,
   addComment_Post,
-  getComments
+  getComments,
+  addFriend
 };
