@@ -37,7 +37,10 @@ function getAllPosts(req, res) {
 function getFilterPosts(req, res) {
   try {
     const filters = JSON.parse(req.params.filters);
-    db.getFilterPosts(filters,posts => {
+    console.log("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA FILTERS ==>");
+    console.log(filters);
+    
+    db.getFilterPosts(filters, posts => {
       res.status(201).json(posts);
     });
   } catch (error) {

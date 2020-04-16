@@ -104,10 +104,6 @@ async function addTag(tag, callback) {
 async function addPost_Tag(post_tag, callback) {
   console.log("dbManeger: Post_Tag call()");
 
-  console.log("====================================================");
-  console.log(post_tag);
-
-
   const query = `INSERT INTO Post_Tag VALUES( '${post_tag.post_id}', '${post_tag.tagId}')`;
   await sql.query(connectionString, query, (err, res) => {
     if (err) console.log("from addPost_tag", err);
@@ -116,16 +112,18 @@ async function addPost_Tag(post_tag, callback) {
 }
 
 function getFilterQuery(filters) {
-  const { fromFilter, ToFilter, publisher, radiusFrom, location, imageTags, userTags } = filters;
+  const { fromFilter, toFilter, publisher, radiusFrom, positionCallback, imageTags, userTags } = filters;
   filterQuery = ["Where"];
 
   if (fromFilter) {
-    filterQuery.push(`CAST(Posts.date as datetime)>='${fromFilter}'`)
+    filterQuery.push(`CAST(Posts.date as datetime) >='${fromFilter}'`)
+    // filterQuery.push(`Posts.date >='${fromFilter}'`)
     filterQuery.push(`And`)
   }
 
-  if (ToFilter) {
-    filterQuery.push(`CAST(Posts.date as datetime)<='${ToFilter}'`)
+  if (toFilter) {
+    filterQuery.push(`CAST(Posts.date as datetime) <='${toFilter}'`)
+    // filterQuery.push(`Posts.date <='${toFilter}'`)
     filterQuery.push(`And`)
   }
 
@@ -133,17 +131,18 @@ function getFilterQuery(filters) {
     filterQuery.push(`Users.name = '${publisher}'`)
     filterQuery.push(`And`)
   }
-  ///by km
-  if (radiusFrom && location) {
+  
+  // by km
+  if (radiusFrom && positionCallback) {
     filterQuery.push(`POWER((
-      POWER( ( 53.0 * ( Posts.longitude - ${location.longitude} ) ) , 2 )
-       + POWER( ( 69.1 * ( Posts.latitude - ${location.latitude} ) ) , 2 )
-      ),0.5)*1.609344  < 1 * ${radiusFrom} `)
+      POWER( ( 53.0 * ( CAST( Posts.longitude as float) - ${positionCallback.latitude} ) ) , 2 )
+       + POWER( ( 69.1 * ( CAST( Posts.latitude as float) - ${positionCallback.longitude} ) ) , 2 )
+      ),0.5) * 1.609344  < 1 * ${radiusFrom} `)
     filterQuery.push(`And`)
   }
 
   if (imageTags) {
-    //not implamented
+    //not implemented
   }
 
   if (userTags) {
@@ -156,22 +155,25 @@ function getFilterQuery(filters) {
 
   return filterQuery.join(" ");
 }
-function getFilterPosts(filters, callback) {
 
+function getFilterPosts(filters, callback) {
   console.log("dbmaneger: getFilterPosts call()");
+
   filterQuery = getFilterQuery(filters);
 
   const query = `select *
-                  from Posts 
+                  from Posts
                   INNER JOIN Users on Users._id = Posts.publisher_id
                   left JOIN Post_Tag on Posts.post_id = Post_Tag.post_id
-                  -- left JOIN Tags on Tags.tag_id = Post_Tag.tag_id
-                  ${filterQuery}`;
-  console.log("query ==> ");
+                  left JOIN Tags on Tags.id_tag = Post_Tag.tag_id
+                  ${filterQuery}
+                `;
+
+  console.log("QUERY ==> ");
   console.log(query);
 
   sql.query(connectionString, query, (err, rows) => {
-    if (err) console.log("from addPost_tag", err);
+    if (err) console.log("dbManager getFilterPosts ERROR ==> ", err);
     callback(rows);
   });
 }
@@ -279,9 +281,12 @@ async function getComments(_postId, callback) {
   });
 }
 
+///////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////
 async function addFriend(params, callback) {
   console.log("dbManeger: addFriend call()");
-
+  
   const query = `INSERT INTO user_friends VALUES( '${params.friendshipData.friendId}', '${params.friendshipData.friendId}', 'yes' )`;
   await sql.query(connectionString, query, (err, res) => {
     if (err) {
@@ -294,6 +299,9 @@ async function addFriend(params, callback) {
     }
   });
 }
+///////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////
 
 
 module.exports = {

@@ -20,6 +20,7 @@ export class FeedComponent implements OnInit {
     imageTags: '',
     userTags: ''
   };
+
   tempSubscription: Subscription;
 
   constructor(
@@ -46,11 +47,9 @@ export class FeedComponent implements OnInit {
           };
 
           this.tempSubscription = this._postApiService.getFilterPosts(this.postsFilter).subscribe();
-          console.log("tempSubscription ==>");
-          console.log(this.tempSubscription);
         },
         err =>{
-          this.toastr.error(err + "Error in register");
+          this.toastr.error(err + "Error in feed");
         })
       }
       else{
